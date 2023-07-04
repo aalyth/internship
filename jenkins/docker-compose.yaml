@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  jenkins:
+    container_name: jenkins 
+    image: jenkins/jenkins:lts-jdk11
+
+    restart: on-failure
+
+    networks: 
+      - jenkins_nw
+
+    environment:
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+
+    ports:
+      - 8000:8000
+      - 8080:8080
+      - 50000:50000
+
+networks:
+  jenkins_nw:
