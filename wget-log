@@ -1,6 +1,0 @@
---2023-07-04 14:08:32--  http://localhost:8080/pluginManager/api/xml?depth=1
-Resolving localhost (localhost)... 127.0.0.1
-Connecting to localhost (localhost)|127.0.0.1|:8080... connected.
-HTTP request sent, awaiting response... 403 Forbidden
-2023-07-04 14:08:32 ERROR 403: Forbidden.
-

@@ -1,7 +1,54 @@
+# CasC - Configuration as Code
 jenkins:
   agentProtocols:
     - "JNLP4-connect"
     - "Ping"
+  clouds:
+  - docker:
+      dockerApi:
+        connectTimeout: 60
+        dockerHost:
+          uri: "tcp://172.16.10.69:4243/"
+        readTimeout: 60
+      name: "docker"
+      templates:
+      - connector: "attach"
+        dockerTemplateBase:
+          cpuPeriod: 0
+          cpuQuota: 0
+          image: "aalyth/internship"
+        labelString: "docker-slave"
+        name: "docker-slave"
+        pullStrategy: PULL_ALWAYS
+        pullTimeout: 300
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "built-in"
+  - name: "docker-slave"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
 globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"
@@ -70,7 +117,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://dmtr.jnkns:8080/"
+    url: "http://jnkns:8080/"
   mailer:
     charset: "UTF-8"
     useSsl: false

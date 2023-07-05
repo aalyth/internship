@@ -5,10 +5,10 @@ if [ $# != 1 ]; then
 	exit 1
 fi
 
-rm jenkins-cli.jar
-wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+rm jenkins-cli.jar &> /dev/null
+wget http://localhost:8080/jnlpJars/jenkins-cli.jar -o /dev/null
 
 JENKINS_URL='http://localhost:8080'
-java -jar jenkins-cli.jar -s $JENKINS_URL get-job "$1" > job.xml
+java -jar jenkins-cli.jar -s $JENKINS_URL get-job "$1"
 
 rm jenkins-cli.jar
