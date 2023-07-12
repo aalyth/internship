@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend 
+
+spec:
+  selector:
+    matchLabels:
+      app: backend 
+
+  template:
+    metadata:
+      labels:
+        app: backend 
+
+    spec:
+      containers:
+      - name: backend 
+        image: backend-img:latest 
+        imagePullPolicy: Never
+
+        ports:
+          - containerPort: 1337 
+
+        resources:
+          requests:
+            cpu: 100m     # 10% of a cpu core
+            memory: 200Mi # 200mb RAM
+
+        livenessProbe:
+          httpGet:
+            path: /hc
+            port: 1337
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 15
+          timeoutSeconds: 5
+
+        readinessProbe:
+          httpGet:
+            path: /hc
+            port: 1337 
+            scheme: HTTP
+          initialDelaySeconds: 5
+          timeoutSeconds: 1

@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # this shell exports the job given as first argument
 
 if [ $# != 1 ]; then

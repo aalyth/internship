@@ -2,7 +2,8 @@ version: "3.3"
 services:
   jenkins:
     container_name: jenkins 
-    image: jenkins:jcasc
+      #image: jenkins:jcasc
+    image: jenkins/jenkins:lts-jdk11
 
     restart: on-failure
 

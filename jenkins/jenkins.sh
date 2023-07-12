@@ -1,3 +1,4 @@
+#!/bin/sh
 
 sudo systemctl start docker
 
