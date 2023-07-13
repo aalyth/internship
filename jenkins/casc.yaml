@@ -4,30 +4,30 @@ jenkins:
     - "JNLP4-connect"
     - "Ping"
   clouds:
-  - docker:
-      dockerApi:
-        connectTimeout: 60
-        dockerHost:
-          uri: "tcp://172.16.10.69:4243/"
-        readTimeout: 60
-      name: "docker"
-      templates:
-      - connector: "attach"
-        dockerTemplateBase:
-          cpuPeriod: 0
-          cpuQuota: 0
-          image: "aalyth/internship"
-        labelString: "docker-slave"
-        name: "docker-slave"
-        pullStrategy: PULL_ALWAYS
-        pullTimeout: 300
+    - docker:
+        dockerApi:
+          connectTimeout: 60
+          dockerHost:
+            uri: tcp://172.16.10.69:4243/
+          readTimeout: 60
+        name: "docker"
+        templates:
+          - connector: "attach"
+            dockerTemplateBase:
+              cpuPeriod: 0
+              cpuQuota: 0
+              image: "aalyth/internship"
+            labelString: "docker-slave"
+            name: "docker-slave"
+            pullStrategy: PULL_ALWAYS
+            pullTimeout: 300
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
-  - name: "built-in"
-  - name: "docker-slave"
+    - name: "built-in"
+    - name: "docker-slave"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -43,11 +43,11 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "default"
-      url: "https://updates.jenkins.io/update-center.json"
+      - id: "default"
+        url: "https://updates.jenkins.io/update-center.json"
   views:
-  - all:
-      name: "all"
+    - all:
+        name: "all"
   viewsTabBar: "standard"
 globalCredentialsConfiguration:
   configuration:

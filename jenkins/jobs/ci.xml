@@ -33,7 +33,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>go build -C server</command>
+      <command>go build -C backend</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
