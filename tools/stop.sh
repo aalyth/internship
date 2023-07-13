@@ -1,6 +1,4 @@
 #!/bin/sh
 
-docker image rm backend-img
-kubectl delete deployment backend --cascade=foreground
-kubectl delete hpa backend 
-kubectl delete service backend-svc
+sh utils/stop/stop_backend.sh
+sh utils/stop/stop_frontend.sh

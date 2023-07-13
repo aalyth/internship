@@ -8,6 +8,7 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
 		c.JSON(200, gin.H{
 			"reply": "it works",
 		})

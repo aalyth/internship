@@ -1,34 +1,19 @@
-import express from 'express'
-import { renderToString } from 'vue/server-renderer'
-import { createApp } from './app.js'
+const express = require('express')
 
-const server = express()
+const app = express()
 
-server.use(express.static(__dirname + '/../client'))
+app.use(express.static('./client/static'))
 
-server.get('/', (req, res) => {
-	renderToString(createApp()).then(html => {
-		res.send(`
-	<!DOCTYPE html>
-	<html lang='en'>
-		<head>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+app.get('/', (req, res) => {
+	res.sendFile('/client/index.html', { root: './' })
+})
 
-			<title> Frontend </title>
-			<script defer type='module' src='index.js'> </script>
-		</head>
-
-		<body>
-			<div id="app"> ${html} </div>
-		</body>
-	</html>
-	`)
-	})
+app.get('/hc', (req, res) => {
+	res.sendStatus(200)	
 })
 
 const port = 3000
-server.listen(port, () => {
-	console.log(`Server running on port: ${port}`)
+app.listen(port, () => {
+	console.log(`Starting server on port: ${port}`)
 })
+
