@@ -16,7 +16,7 @@ jenkins:
             dockerTemplateBase:
               cpuPeriod: 0
               cpuQuota: 0
-              image: "aalyth/internship"
+              image: "aalyth/ci-backend"
             labelString: "docker-slave"
             name: "docker-slave"
             pullStrategy: PULL_ALWAYS

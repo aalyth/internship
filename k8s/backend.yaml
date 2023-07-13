@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: backend 
-        image: backend-img:latest 
-        imagePullPolicy: Never
+        image: aalyth/cd-backend:latest 
+        imagePullPolicy: Always 
 
         ports:
           - containerPort: 1337 

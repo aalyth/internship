@@ -1,7 +1,8 @@
 FROM golang:latest
 
 WORKDIR /app
-COPY ./* ./
+COPY ./server.go ./
+COPY ./go.* ./
 RUN go mod download
 RUN go build -o /app/srv 
 

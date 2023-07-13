@@ -1,8 +1,4 @@
 
-# frontend image
-docker image rm frontend-img
-docker build -t frontend-img ./../frontend
-
 # frontend deployment
 kubectl delete deployment frontend --cascade=foreground
 kubectl apply -f ./../k8s/frontend.yaml

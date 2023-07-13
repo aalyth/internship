@@ -34,7 +34,7 @@ done
 rm jenkins-cli.jar
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar -o /dev/null
 
-java -jar jenkins-cli.jar -s $JENKINS_URL create-job 'ci' < ./jobs/ci.xml
+java -jar jenkins-cli.jar -s $JENKINS_URL create-job 'ci_backend' < ./jobs/ci_backend.xml
 
 rm jenkins-cli.jar
 
