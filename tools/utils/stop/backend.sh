@@ -1,5 +1,5 @@
 
-docker image rm go-api-img
-kubectl delete deployment go-api --cascade=foreground
-kubectl delete hpa go-api 
-kubectl delete service go-api-svc
+docker image rm backend-img
+kubectl delete deployment backend --cascade=foreground
+kubectl delete hpa backend 
+kubectl delete service backend-svc
