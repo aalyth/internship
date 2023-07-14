@@ -26,21 +26,25 @@ docker compose up -d
 
 JENKINS_URL='http://localhost:8080'
 
-echo "\nAwaiting Jenkins start...\n"
+echo "\nAwaiting Jenkins start..."
 until $(curl --output /dev/null --silent --head --fail $JENKINS_URL); do
-    sleep 2
+    sleep 1
 done
 
-rm jenkins-cli.jar
+echo "\nImporting Jenkins Jobs..."
+JOBS=$(find ./jobs -type f -printf "%f\n" | cut -d'.' -f1)
+rm jenkins-cli.jar 2> /dev/null
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar -o /dev/null
 
-java -jar jenkins-cli.jar -s $JENKINS_URL create-job 'ci_backend' < ./jobs/ci_backend.xml
+for job in $JOBS; do
+	java -jar jenkins-cli.jar -s $JENKINS_URL create-job $job  < ./jobs/${job}.xml
+done
 
 rm jenkins-cli.jar
 
 
 # this is so the jenkins is visible to the outside world
-echo "Starting Ngrok port forward...\n"
+echo "\nStarting Ngrok port forward..."
 killall ngrok 2>/dev/null
 ngrok http 8080 > /dev/null &
 
@@ -49,5 +53,5 @@ sleep 5
 
 tunnel_url=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
 
-echo "Connect your Jenkins to the given link: $tunnel_url\n"
+echo "\nConnect to your Jenkins via the given link: $tunnel_url\n"
 

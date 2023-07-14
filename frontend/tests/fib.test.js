@@ -1,9 +1,6 @@
 
 const fib = require('./fib').fib
 
-
-console.log(fib(10))
-
 test('testing the fibonacci function', () => {
 	expect(fib(0)).toBe(0)
 	expect(fib(2)).toBe(1)

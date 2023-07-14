@@ -17,8 +17,17 @@ jenkins:
               cpuPeriod: 0
               cpuQuota: 0
               image: "aalyth/ci-backend"
-            labelString: "docker-slave"
-            name: "docker-slave"
+            labelString: "docker-backend"
+            name: "docker-backend"
+            pullStrategy: PULL_ALWAYS
+            pullTimeout: 300
+          - connector: "attach"
+            dockerTemplateBase:
+              cpuPeriod: 0
+              cpuQuota: 0
+              image: "aalyth/ci-frontend"
+            labelString: "docker-frontend"
+            name: "docker-frontend"
             pullStrategy: PULL_ALWAYS
             pullTimeout: 300
   crumbIssuer:
@@ -54,10 +63,10 @@ globalCredentialsConfiguration:
     providerFilter: "none"
     typeFilter: "none"
 security:
-  apiToken:
-    creationOfLegacyTokenEnabled: false
-    tokenGenerationOnCreationEnabled: false
-    usageStatisticsEnabled: true
+  #apiToken:
+  #  creationOfLegacyTokenEnabled: false
+  #  tokenGenerationOnCreationEnabled: false
+  #  usageStatisticsEnabled: true
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false

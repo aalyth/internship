@@ -2,16 +2,12 @@ package fib
 
 var lookup = make(map[uint32]uint64)
 func Fib(n uint32) uint64 {
-	if n == 0 {
-		return 0
-	}
+	if n == 0 { return 0 }
 
-	if n <= 2  {
-		return 1
-	}
+	if n <= 2  { return 1 }
 
 	val, computed := lookup[n]
-	if computed  {
+	if computed {
 		return val
 	}
 

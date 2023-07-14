@@ -8,43 +8,43 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>http://github.com/aalyth/internship</url>
+        <url>https://github.com/aalyth/internship</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>**</name>
+        <name>main</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="empty-list"/>
     <extensions/>
   </scm>
-  <assignedNode>docker-backend</assignedNode>
+  <assignedNode>docker-frontend</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.37.1">
-      <spec></spec>
-    </com.cloudbees.jenkins.GitHubPushTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
       <command>set +x
 echo &apos;\n\n--------------- SMOKE TESTS ---------------&apos;
-go build -C backend -o backend
-./backend/backend &amp;
-curl http://localhost:1337/
-echo &apos;\n--------------- SUCCESS ---------------\n\n&apos;</command>
+cd frontend
+npm install
+npm start &amp;
+sleep 2 # so the server can start properly
+curl http://localhost:3000/
+echo &apos;--------------- SUCCESS ---------------\n\n&apos;</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>set +x
 echo &apos;\n\n--------------- UNIT TESTS ---------------&apos;
-go test -C backend/tests
+cd frontend
+npm install
+npm test
 echo &apos;--------------- SUCCESS ---------------\n\n&apos;</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
