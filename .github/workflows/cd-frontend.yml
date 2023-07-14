@@ -1,7 +1,6 @@
 name: CD Frontend 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
     paths:
@@ -10,7 +9,6 @@ on:
 jobs:
   cd-frontend:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
     steps:
       - uses: aalyth/action-trigger-jenkins-job@main
         with:
