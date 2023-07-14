@@ -1,0 +1,48 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@5.1.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>http://github.com/aalyth/internship</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>main</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="empty-list"/>
+    <extensions/>
+  </scm>
+  <assignedNode>docker-agent</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <com.nirima.jenkins.plugins.docker.builder.DockerBuilderPublisher plugin="docker-plugin@1.4">
+      <dockerFileDirectory>./frontend</dockerFileDirectory>
+      <fromRegistry plugin="docker-commons@422.v9d1a_89cede51"/>
+      <tags>
+        <string>aalyth/cd-frontend</string>
+      </tags>
+      <pushOnSuccess>false</pushOnSuccess>
+      <pushCredentialsId>DH_LOGIN</pushCredentialsId>
+      <cleanImages>false</cleanImages>
+      <cleanupWithJenkinsJobDelete>false</cleanupWithJenkinsJobDelete>
+      <cloud>docker</cloud>
+      <noCache>false</noCache>
+      <pull>false</pull>
+    </com.nirima.jenkins.plugins.docker.builder.DockerBuilderPublisher>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

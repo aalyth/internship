@@ -1,28 +1,28 @@
 #!/bin/sh
 
-sudo systemctl start docker
+#echo "\nSetting up Docker & Docker Daemon...\n"
+#sudo systemctl start docker
+#
+## this way we configure the Docker API to be open to localhost:4243
+#sudo sed -i 's/^ExecStart=.*/ExecStart=\/usr\/bin\/dockerd -H tcp:\/\/0\.0\.0\.0:4243 -H unix:\/\/\/var\/run\/docker\.sock/' /lib/systemd/system/docker.service
+#
+#sudo systemctl daemon-reload
+#sudo systemctl restart docker.service
 
-:'
-# this way we configure the Docker API to be open to localhost:4243
-sudo sed -i 's/^ExecStart=.*/ExecStart=\/usr\/bin\/dockerd -H tcp:\/\/0\.0\.0\.0:4243 -H unix:\/\/\/var\/run\/docker\.sock/' /lib/systemd/system/docker.service
-
-sudo systemctl daemon-reload
-sudo systemctl restart docker.service
-'
-
-private_ip=$(hostname -I | awk '{print $1}')
-
-docker_uri="\"tcp://${private_ip}:4243/\""
-
-yq -i ".jenkins.clouds[0].docker.dockerApi.dockerHost.uri = ${docker_uri}" casc.yaml
+PRIVATE_IP=$(hostname -I | awk '{print $1}')
+DOCKER_URI="\"tcp://${PRIVATE_IP}:4243/\""
+yq -i ".jenkins.clouds[0].docker.dockerApi.dockerHost.uri = ${DOCKER_URI}" casc.yaml
 
 
 # JCasC - Jenkins Configuration as Code
-docker image rm jenkins:jcasc
-docker build -t jenkins:jcasc .
-
 docker compose down jenkins
+docker image rm jenkins:jcasc
+
+echo "$(cat credentials.env)\n$(cat jcasc.yaml)" > casc.yaml 
+docker build -t jenkins:jcasc .
 docker compose up -d
+rm casc.yaml
+
 
 JENKINS_URL='http://localhost:8080'
 

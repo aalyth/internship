@@ -20,6 +20,7 @@
 # Go workspace file
 go.work
 
+# !!! VERY IMPORTANT !!!
 *.env
 
 # Logs

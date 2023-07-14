@@ -30,6 +30,22 @@ jenkins:
             name: "docker-frontend"
             pullStrategy: PULL_ALWAYS
             pullTimeout: 300
+          - connector: "attach"
+            dockerTemplateBase:
+              cpuPeriod: 0
+              cpuQuota: 0
+              image: "aalyth/docker-agent"
+            labelString: "docker-agent"
+            name: "docker-agent"
+            nodeProperties:
+              - envVars:
+                  env:
+                    - key: "DH_USR"
+                      value: ""
+                    - key: "DH_TOK"
+                      value: ""
+            pullStrategy: PULL_ALWAYS
+            pullTimeout: 300
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false

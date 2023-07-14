@@ -7,7 +7,6 @@ if [ $# != 1 ]; then
 	exit 1
 fi
 
-rm jenkins-cli.jar &> /dev/null
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar -o /dev/null
 
 JENKINS_URL='http://localhost:8080'

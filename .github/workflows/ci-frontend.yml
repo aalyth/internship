@@ -5,10 +5,10 @@ on:
       - frontend/**
 
 jobs:
-  ci-backend:
+  ci-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: aalyth/action-trigger-jenkins-job@main
         with:
           url: ${{ secrets.JENKINS_URL }}
-          job: ci_frontend
+          job: ci-frontend

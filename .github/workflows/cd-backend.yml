@@ -1,15 +1,18 @@
-name: CI Backend
+name: CD Backend
 on:
-  push:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
     paths:
       - backend/**
 
 jobs:
-  ci-backend:
+  cd-backend:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - uses: aalyth/action-trigger-jenkins-job@main
         with:
           url: ${{ secrets.JENKINS_URL }}
-          job: ci-backend
-
+          job: cd-backend
