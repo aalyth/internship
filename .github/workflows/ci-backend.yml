@@ -2,13 +2,14 @@ name: CI Backend
 on:
   push:
     paths:
-      - 'frontend/*'
+      - backend/**
 
 jobs:
   ci-backend:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: |
-          echo test
+      - uses: aalyth/action-trigger-jenkins-job@main
+        with:
+          url: ${{ secrets.JENKINS_URL }}
+          job: ci_backend
 
