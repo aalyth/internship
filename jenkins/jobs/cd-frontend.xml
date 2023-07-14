@@ -20,8 +20,7 @@
     <submoduleCfg class="empty-list"/>
     <extensions/>
   </scm>
-  <assignedNode>docker-agent</assignedNode>
-  <canRoam>false</canRoam>
+  <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
@@ -34,8 +33,8 @@
       <tags>
         <string>aalyth/cd-frontend</string>
       </tags>
-      <pushOnSuccess>false</pushOnSuccess>
-      <pushCredentialsId>DH_LOGIN</pushCredentialsId>
+      <pushOnSuccess>true</pushOnSuccess>
+      <pushCredentialsId>DH_CREDS</pushCredentialsId>
       <cleanImages>false</cleanImages>
       <cleanupWithJenkinsJobDelete>false</cleanupWithJenkinsJobDelete>
       <cloud>docker</cloud>

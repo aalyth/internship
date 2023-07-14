@@ -18,10 +18,10 @@ yq -i ".jenkins.clouds[0].docker.dockerApi.dockerHost.uri = ${DOCKER_URI}" casc.
 docker compose down jenkins
 docker image rm jenkins:jcasc
 
-echo "$(cat credentials.env)\n$(cat jcasc.yaml)" > casc.yaml 
+#echo "$(cat credentials.env)\n$(cat jcasc.yaml)" > casc.yaml 
 docker build -t jenkins:jcasc .
 docker compose up -d
-rm casc.yaml
+#rm casc.yaml
 
 
 JENKINS_URL='http://localhost:8080'
