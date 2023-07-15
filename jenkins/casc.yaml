@@ -8,7 +8,7 @@ jenkins:
         dockerApi:
           connectTimeout: 60
           dockerHost:
-            uri: tcp://172.16.10.69:4243/
+            uri: tcp://172.28.65.85:4243/
           readTimeout: 60
         name: "docker"
         templates:

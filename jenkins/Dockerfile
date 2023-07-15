@@ -1,8 +1,6 @@
 FROM jenkins/jenkins:lts-jdk11
 
-# install Docker
 USER root
-RUN curl -fsSL https://get.docker.com | sh
 
 # disables the setup wizard
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
